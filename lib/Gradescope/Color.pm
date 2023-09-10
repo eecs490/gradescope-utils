@@ -26,13 +26,17 @@ package Gradescope::Color v2023.02.14 {
         color_print
     );
 
-    our $has_colorizer = defined(can_run('bat'));
+    our $has_colorizer = defined(can_run('batcat')) || defined(can_run('bat'));
     carp '[suggestion] get `bat` for colorized output' if !$has_colorizer;
 
     sub color_print {
         my ($str, $language) = @_;
         if($has_colorizer && !defined($ENV{GU_NO_PAGER})){
-            run ['bat', '-l', $language], '<', \$str;
+            my $bat = 'bat';
+            if(can_run('batcat')){ # bat is sometimes named batcat
+                $bat = 'batcat';
+            }
+            run [$bat, '-l', $language], '<', \$str;
         }
         else{
             print $str;

@@ -44,13 +44,13 @@ use diagnostics -verbose;
 
 my @builds = glob 'Gradescope-Utils-*';
 @builds = grep {m/^Gradescope-Utils-([\d\.]+)(\.tar\.gz)?$/} @builds;
-say STDERR '[debug] found versions:';
+say '[debug] found versions:';
 say for @builds;
 my @versions = map {m/^Gradescope-Utils-([\d\.]+)(\.tar\.gz)?$/; version->parse($1)} @builds;
 @versions = sort @versions;
 my $latest_version = pop @versions;
 should($latest_version->stringify, "$latest_version"); # I'm a bit nervous about how version objects are handled
-say STDERR "[debug] using version: $latest_version";
+say "[debug] using version: $latest_version";
 # NOTE: we could use the perl equivalents for portability, but I'm assuming so much *nix anyways, there's no point
 # (ie sorry windows users)
 my $local_share = File::Spec->catdir($ENV{HOME}, '.local', 'share', 'gradescope-utils');
@@ -69,12 +69,12 @@ my $confirm_overwrite_install = sub{
 @builds = grep {m/^Gradescope-Utils-$latest_version(\.tar\.gz)?$/} @builds;
 # prefer the regular build dir over the tar 'd one, if it exists
 if(grep {m/^Gradescope-Utils-$latest_version$/} @builds){
-    say STDERR "[debug] using build at 'Gradescope-Utils-$latest_version/'";
+    say "[debug] using build at 'Gradescope-Utils-$latest_version/'";
     &$confirm_overwrite_install;
     run ['cp', '-rT', "Gradescope-Utils-$latest_version", $local_share] or croak '[error] `cp` failed';
 }
 elsif(grep {m/\.tar\.gz$/} @builds){
-    say STDERR "[debug] using build at 'Gradescope-Utils-$latest_version.tar.gz'";
+    say "[debug] using build at 'Gradescope-Utils-$latest_version.tar.gz'";
     &$confirm_overwrite_install;
     my $tmpdir = File::Temp->newdir();
     run ['tar', '-xf', "Gradescope-Utils-$latest_version.tar.gz", '-C', $tmpdir] or croak '[error] `tar` failed';
@@ -90,14 +90,16 @@ if(!-e $local_bin){
 }
 run ['ln', '-fs', File::Spec->catfile($local_share, 'bin', 'gradescope-utils.pl'), File::Spec->catfile($ENV{HOME}, '.local', 'bin', 'gu')] or croak '[error] `ln` failed';
 
+# PODNAME:
+# ABSTRACT: Gradescope Utils installer
 =pod
 
 =encoding utf8
 
-=head1 NAME
-
 =head1 SYNOPSIS
 
 =head1 DESCRIPTION
+
+see README.md
 
 =cut
