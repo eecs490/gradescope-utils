@@ -43,6 +43,19 @@ install-deps:
 # (yeah...)
 install-build-deps:
 	dzil authordeps --missing | cpanm
+install-runtime-deps:
+	# nonexhaustive list
+	cpanm Want
+	cpanm strictures
+	cpanm Carp::Assert
+	cpanm Text::CSV
+	cpanm JSON
+	cpanm File::Slurp
+	cpanm IO::Prompter
+	cpanm Capture::Tiny
+	cpanm IPC::Run
+	cpanm YAML::XS
+	cpanm Email::Address::XS
 clean:
 	dzil clean
 clean-full: clean
@@ -55,4 +68,4 @@ package:
 	$(MAKE) install.packed.pl
 	$(MAKE)
 
-.PHONY: default install eecs490 install-deps install-build-deps clean clean-full package
+.PHONY: default install eecs490 install-deps install-build-deps install-runtime-deps clean clean-full package

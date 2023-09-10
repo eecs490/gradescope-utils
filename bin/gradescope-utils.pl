@@ -51,19 +51,18 @@ GetOptions(\%options,
     'list|l',
 );
 $ENV{PATH} = "${\(File::Spec->catdir($ENV{HOME}, '.local', 'share', 'gradescope-utils', 'bin'))}:$ENV{PATH}";
-if($options{help} && @ARGV == 0){
+my $print_help = sub{
     color_print(scalar(File::Slurp::read_file(File::Spec->catfile($ENV{HOME}, '.local', 'share', 'gradescope-utils', 'README.md'))), 'md');
     exit 0;
+};
+if($options{help} && @ARGV == 0){
+    &$print_help;
 }
 if($options{list} && @ARGV == 0){
     say basename($_) for (grep {-x} File::Slurp::read_dir(File::Spec->catdir($ENV{HOME}, '.local', 'share', 'gradescope-utils', 'bin'), {prefix => 1}));
     exit 0;
 }
-if(@ARGV == 0){
-    # same as help
-    color_print(scalar(File::Slurp::read_file(File::Spec->catfile($ENV{HOME}, '.local', 'share', 'gradescope-utils', 'README.md'))), 'md');
-    exit 0;
-}
+&$print_help if @ARGV == 0; # same as help
 # fix ARGV for subcommand calls
 if(can_run($ARGV_pristine[0])){
     exec(@ARGV_pristine);
@@ -83,5 +82,7 @@ else{
 =head1 SYNOPSIS
 
 =head1 DESCRIPTION
+
+See README.md
 
 =cut

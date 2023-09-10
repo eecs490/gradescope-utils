@@ -15,9 +15,9 @@ in W22
 ## OVERVIEW
 ### `gu` wrapper
 - `gu --help` brings up this README
-- `gu upload.pl ARGS` calls `bin/upload.pl ARGS`
-- etc
-(`~/.local/bin` should already be in `$PATH`, but you may need to manually add it)
+- `gu --list` lists all provided scripts
+- `gu CMD ARGS` calls `bin/CMD ARGS`
+(`~/.local/bin` should already be in `$PATH`, but you may need to add it)
 
 #### examples
 - `gu map.pl -f gu -f singletonkv2scalar.pl < submissions.json`
@@ -87,17 +87,8 @@ See OVERVIEW.
 `make install` builds everything, which requires **a lot** of dependencies.
 You probably want to `make install-lite` which uses the included tarball.
 
-You may need to install some cpan modules, which many of the perl scripts use:
-- `cpan Want`
-- `cpan strictures`
-- `cpan Carp::Assert`
-- `cpan File::Slurp`
-- `cpan IO::Prompter`
-- `cpan Capture::Prompter`
-- `cpan IPC::Run`
-- or whenever you get the "you may need to install the FOO::BAR module" message
-
-You should do this on an as-you-go basis.
+You may need to install cpan modules as you go-- whenever you get the "you may need to install the FOO::BAR module" message.
+`make install-runtime-deps` installs some of the runtime dependencies.
 ## BUGS
 Please raise issues on the [github](https://github.com/eecs490/gradescope-utils)
 or email [hejohns@umich.edu](mailto:hejohns@umich.edu)
