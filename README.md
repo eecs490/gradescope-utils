@@ -17,6 +17,7 @@ in W22
 - `gu --help` brings up this README
 - `gu --list` lists all provided scripts
 - `gu CMD ARGS` calls `bin/CMD ARGS`
+- `gu --version`
 (`~/.local/bin` should already be in `$PATH`, but you may need to add it)
 
 #### examples
@@ -30,10 +31,6 @@ in W22
 
 #### the main scripts, in approximate pipeline order:
 ##### join.pl : **zip** → [**token2uniqname**, **submissions**]
-- stdin: n/a
-- stdout: json pair of (**token2uniqname**, **submissions**)
-- args: a Gradescope submissions export **zip**, and hooks to configure what ends up in **submissions**
-
 ##### split.pl : **token2uniqname** → **csv** → **submissions**
 - stdin: **token2uniqname**
 - stdout: **submissions**

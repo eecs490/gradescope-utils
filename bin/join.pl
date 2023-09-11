@@ -111,7 +111,7 @@ join.pl [-f ls -f '-l'] submissions.zip
 converts I<gradescope_export_submissions_zip>
 to single json hash of submissions
 
-does B<not> support -
+does B<not> support -, and does not take stdin
 (we use `cp`, `unzip` internally)
 
 =head1 OPTIONS
@@ -122,8 +122,7 @@ does B<not> support -
 
 B<required>
 
-a command to which
-an additional argument will be applied:
+expects a command which will be applied to an additional argument of
 the directory path to a student's unzipped submission
 
 commands with multiple arguments need to be specified one at a time,

@@ -67,20 +67,18 @@ for my $k (keys %a, keys %b){
 color_print(JSON::to_json(\%output, {pretty => 1, canonical => 1}), 'JSON');
 
 # PODNAME:
-# ABSTRACT: Gradescope submission script lambda
+# ABSTRACT: Gradescope submission script utility
 =pod
 
 =encoding UTF-8
 
 =head1 SYNOPSIS
 
-grep.pl : json hash -> json hash
-
-grep.pl regex
+mergekv.pl : B<[json hash, json hash] → json hash>
 
 =head1 DESCRIPTION
 
-(on the keys)
-
+stdin: a json pair of json hashes
+stdout: a merged json hash, preferring the first hash in the case of overlapping keys
 =cut
 

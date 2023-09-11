@@ -75,10 +75,40 @@ color_print(JSON::to_json(\%kv, {pretty => 1, canonical => 1}), 'JSON');
 
 =head1 SYNOPSIS
 
+csv2json.pl : B<csv → json hash>
+
 csv2json.pl [options]
 
 csv2json.pl [-k token] [-v uniqname] < I<csv>
 
 =head1 DESCRIPTION
+
+converts a csv to json key-value with perl's Text::CSV and JSON modules
+
+stdin: a csv
+stdout: json hash
+
+=head1 OPTIONS
+
+=head2 keyheader|k
+
+csv column header(s) that will for the json hash key
+
+mutliple headers can be specified by repeating C<-k>
+
+=head2 valueheader|v
+
+csv column header(s) that will for the json hash value
+
+mutliple headers can be specified by repeating C<-v>
+
+if multiple headers are specified,
+the json value is again a hash, with the value headers for keys
+
+=head2 delimiter|d
+
+if multiple csv column headers are specified,
+each column is joined with the specified delimiter
+for the json hash key
 
 =cut

@@ -60,7 +60,7 @@ print JSON::to_json (JSON::from_json $in);
 
 =head1 SYNOPSIS
 
-string2json.pl token
+string2json.pl : B<json string → json>
 
 map.pl -f ./string2json.pl
 
@@ -68,14 +68,19 @@ map.pl -f ./string2json.pl
 
 unwraps quoted json string
 
-often used to combat F<cat.pl>,
-which quotes the student submission as a (json) string
+stdin: json as json string
+stdout: json
+
+args are ignored
+
+often used to undo stringification by F<cat.pl>,
+which quotes the student submission as a json string
 
 =head1 EXAMPLES
 
 ``on the wire"
 
-    "\"abc\"" |-> " "abc"
+    "\"abc\"" ↦ " "abc"
 
 ie
 
@@ -83,7 +88,7 @@ ie
 
 likewise
 
-    "[]" |-> []
+    "[]" ↦ []
 
 while
 
