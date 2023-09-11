@@ -113,8 +113,20 @@ split.pl [-t ./field-n-eq?] [-k problem_id -v score] submissions.csv < token2uni
 
 =head1 DESCRIPTION
 
+stdin: I<token2uniqname>
+
+stdout: I<submissions>
+
+args: filepath to a csv I<submissions_csv> (eg a sqlite dump)
+and hooks to configure what ends up in I<submissions>
+
 splits up I<submissions_csv>
 into a B<submissions> json hash
+
+F<split.pl> is a more sophisticated version of F<csv2json.pl>
+which additionally takes I<token2uniqname> and filters the I<submissions_csv> by token.
+This may be necessary for example when the csv contains multiple rows per token.
+This would not be handled as well by F<csv2json.pl>.
 
 =head1 OPTIONS
 
@@ -147,5 +159,10 @@ command is a predicate that should C<exit 0> iff the csv row should be used for 
 =head2 debug
 
 to see what C<-f> should be
+
+=head1 SEE ALSO
+
+F<csv2json.pl>,
+F<parallel.rb>
 
 =cut

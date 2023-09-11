@@ -56,6 +56,7 @@ install-runtime-deps:
 	cpan IPC::Run
 	cpan YAML::XS
 	cpan Email::Address::XS
+	cpan Data::Printer
 clean:
 	dzil clean
 clean-full: clean

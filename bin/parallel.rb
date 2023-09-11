@@ -10,17 +10,19 @@ help = ->(){
   puts argparser.help
   puts <<~__EOF
   SYNOPSIS
-      #{$0} : token2uniqname -> json
-          stdin: a token2uniqname json hash
-          stdout: a merged json hash, for all students
-          args: a cmd w/ args to run, where `cmd` should return a json hash
+      #{$0} : token2uniqname → λ → json
+
       cat token2uniqname.json | #{$0} cmd args
   DESCRIPTION
-      This is a thin wrapper to run other Gradescope-Utils scripts in parallel.
+      stdin: a token2uniqname json hash
+      stdout: a merged json hash, for all students
+      args: a cmd w/ args to run for each student, where `cmd` should return a json hash
+
+      This is a wrapper around ruby's parallel map, principally to paralleize map.pl.
       The fundamental assumption is that `cmd` is some sort of map, so each student is really independent.
       `#{$0}` splits `token2uniqname` into singleton hashes per student, and runs `cmd args < singleton_token2uniqname` in parallel, merging the json hashes at the end.
 
-      `#{$0}` passes `args` to `cmd` exactly as is-- as we get it, post shell-- so you shouldn't need to do anything fancy here.
+      `#{$0}` passes `args` to `cmd` exactly as is-- as we get it, post shell.
 
   see the toplevel Gradescope-Utils README for more information
 __EOF

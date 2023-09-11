@@ -32,23 +32,12 @@ in W22
 #### the main scripts, in approximate pipeline order:
 ##### join.pl : **zip** → [**token2uniqname**, **submissions**]
 ##### split.pl : **token2uniqname** → **csv** → **submissions**
-- stdin: **token2uniqname**
-- stdout: **submissions**
-- args: filepath to a **csv** (eg a sqlite dump),
-and hooks to configure what ends up in **submissions**
-
-comes with a wrapper to run each student in parallel, [`parallel.rb`](#parallelrb)
-
 ##### map.pl : **json hash** → **json hash**
 - stdin: **json hash**
 - stdout: **json hash** (with same keys)
 - args: λ to run on each value
 
 ##### upload.pl : [**token2uniqname**, **submissions**] → ()
-- stdin: json pair of (**token2uniqname**, **submissions**)
-- stdout: debug messages
-- args: Gradescope class and assignment ids
-
 #### helper utilities/λs
 see `gu --list`
 

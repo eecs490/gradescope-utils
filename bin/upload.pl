@@ -96,7 +96,7 @@ for my $t (keys %token2uniqname){
 
 =head1 SYNOPSIS
 
-upload.pl : [token2uniqname, submissions] (json array) -> ()
+upload.pl : B<[token2uniqname, submissions] → ()>
 
 upload.pl class_id assignment_id
 
@@ -104,15 +104,17 @@ upload.pl 1234 5678
 
 =head1 DESCRIPTION
 
-I<submissions> := path to directory of submissions for upload created by ./split.pl
+stdin: a json pair of token2uniqname and submissions
 
-I<class_id> := gradescope class id
-
-I<assignment_id> := gradescope assignment id
+uploads I<submissions>
+at gradescope class id I<class_id>
+and gradescope assignment id I<assignment_id>
 
 =head1 OPTIONS
 
 =head2 filetype|f
+
+specify the extension on the files we upload to gradescope
 
 eg C<-f csv>
 
