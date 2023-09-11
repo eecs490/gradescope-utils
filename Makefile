@@ -8,10 +8,10 @@ default: install-deps install-build-deps
 	cabal install field-n-eq --installdir=./bin/ --install-method=copy
 	mv bin/field-n-eq bin/field-n-eq?
 	# final
-	dzil build # NOTE: you may need to install `dzil` with `cpanm Dist::Zilla`
+	dzil build # NOTE: you may need to install `dzil` with `cpan Dist::Zilla`
 	dzil test --release # for some reason pod syntax checker requires the --release flag
 install.packed.pl:
-	cpanm App::FatPacker
+	cpan App::FatPacker
 	fatpack pack install.pl > install.packed.pl
 install: default
 	perl install.pl
@@ -29,12 +29,12 @@ install-deps:
 	# perl
 	## getting perl dependencies is really hard
 	## this list is mostly manually curated and most likely nonexhaustive
-	cpanm Carp::Assert
-	cpanm Text::CSV
-	cpanm JSON
-	cpanm IO::Prompter
-	cpanm IPC::Run
-	cpanm Test::Pod
+	cpan Carp::Assert
+	cpan Text::CSV
+	cpan JSON
+	cpan IO::Prompter
+	cpan IPC::Run
+	cpan Test::Pod
 	# ruby
 	bundler install
 	# haskell
@@ -42,20 +42,20 @@ install-deps:
 # these are the build system's own dependencies
 # (yeah...)
 install-build-deps:
-	dzil authordeps --missing | cpanm
+	dzil authordeps --missing | cpan
 install-runtime-deps:
 	# nonexhaustive list
-	cpanm Want
-	cpanm strictures
-	cpanm Carp::Assert
-	cpanm Text::CSV
-	cpanm JSON
-	cpanm File::Slurp
-	cpanm IO::Prompter
-	cpanm Capture::Tiny
-	cpanm IPC::Run
-	cpanm YAML::XS
-	cpanm Email::Address::XS
+	cpan Want
+	cpan strictures
+	cpan Carp::Assert
+	cpan Text::CSV
+	cpan JSON
+	cpan File::Slurp
+	cpan IO::Prompter
+	cpan Capture::Tiny
+	cpan IPC::Run
+	cpan YAML::XS
+	cpan Email::Address::XS
 clean:
 	dzil clean
 clean-full: clean
